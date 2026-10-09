@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class StatistikNilai {
@@ -43,18 +44,14 @@ public class StatistikNilai {
             total += nilai;
         }
         double rataRata = (double) total / daftar.size();
-        System.out.printf("Rata-rata        : %.2f\n", rataRata);
+        System.out.printf("Rata-rata       : %.2f\n", rataRata);
 
         /*
-         * KETENTUAN 4:
          * Tertinggi dan terendah dicari dengan loop sendiri, bukan dengan Collections.max/min.
          * ALASAN PEMILIHAN NILAI AWAL:
          * Inisialisasi tertinggi dan terendah dimulai dari elemen pertama 'daftar.get(0)' (bukan 0 atau Integer.MAX_VALUE).
-         * Jika terendah dimulai dari 0 padahal semua nilai ujian >= 0, nilai terendah akan selalu bernilai 0
-         * meskipun angka 0 tidak ada di dalam daftar input.
-         * Menggunakan daftar.get(0) menjamin min dan max berada di dalam rentang data yang valid.
+         * Jika terendah dimulai dari 0 padahal semua nilai ujian >= 0, nilai terendah akan selalu bernilai 0 meskipun angka 0 tidak ada di dalam daftar input. Menggunakan daftar.get(0) menjamin min dan max berada di dalam rentang data yang valid.
          */
-
         int tertinggi = daftar.get(0);
         int terendah = daftar.get(0);
 
@@ -68,8 +65,8 @@ public class StatistikNilai {
             }
         }
 
-        System.out.println("Tertinggi      : " + tertinggi);
-        System.out.println("Terendah       : " + terendah);
+        System.out.println("Tertinggi       : " + tertinggi);
+        System.out.println("Terendah        : " + terendah);
 
         /*Jumlah mahasiswa di atas rata-rata tidak bisa dihitung pada putaran pertama (saat membaca input) karena nilai rata-rata kelas belum diketahui sampai seluruh data input selesai dibaca dan totalnya dihitung.*/
         int diatasRataRata = 0;
@@ -78,7 +75,35 @@ public class StatistikNilai {
                 diatasRataRata++;
             }
         }
-        System.out.println("Di atas rata 2 : " + diatasRataRata + " orang");
+        System.out.println("Di atas rata2   : " + diatasRataRata + " orang");
+
+        int[] jumlahGrade = new int[5];
+        for (int nilai : daftar) {
+            if (nilai >= 90) {
+                jumlahGrade[0]++;
+            } else if (nilai >= 80) {
+                jumlahGrade[1]++;
+            } else if (nilai >= 70) {
+                jumlahGrade[2]++;
+            } else if (nilai >= 60) {
+                jumlahGrade[3]++;
+            } else {
+                jumlahGrade[4]++;
+            }
+        }
+
+        char[] labelGrade = {'A', 'B', 'C', 'D', 'E'};
+        System.out.print("Distribusi      : ");
+        for (int i = 0; i < jumlahGrade.length; i++) {
+            System.out.print(labelGrade[i] + "=" + jumlahGrade[i] + (i < jumlahGrade.length - 1 ? " " : ""));
+        }
+        System.out.println();
+
+        ArrayList<Integer> terurut = new ArrayList<>(daftar);
+        Collections.sort(terurut);
+
+        System.out.println("Terurut         : " + terurut);
+        System.out.println("Urutan asli     : " + daftar);
 
         scanner.close();
     }
