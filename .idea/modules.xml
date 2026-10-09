@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/StatistikNilai/StatistikNilai.iml" filepath="$PROJECT_DIR$/StatistikNilai/StatistikNilai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pbo-2581032-praktikum-statistik-nilai.iml" filepath="$PROJECT_DIR$/.idea/pbo-2581032-praktikum-statistik-nilai.iml" />
+    </modules>
+  </component>
+</project>
